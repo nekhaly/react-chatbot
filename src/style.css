@@ -1,0 +1,9 @@
+.message-bubble.sent {
+    align-self: end;
+    background-color: yellowgreen;
+}
+
+.message-bubble.received {
+    align-self: start;
+    background-color: yellow;
+}
