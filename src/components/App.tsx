@@ -6,11 +6,7 @@ import MessageInput from "./MessageInput";
 import { setListeners } from "../services/cognigy";
 import { useDispatch } from 'react-redux';
 
-export interface Props {
-	test: string;
-}
-
-export const App = (props: Props) => {
+export const App = () => {
 
 	const dispatch = useDispatch();
 

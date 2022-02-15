@@ -12,7 +12,7 @@ const { store, persistor } = storeConfig();
 ReactDOM.render(
   <Provider store={store}>
     <PersistGate loading={null} persistor={persistor}>
-      <App test="Test" />
+      <App />
     </PersistGate>
   </Provider>
   , rootElement
