@@ -3,6 +3,7 @@ import { useDispatch, useSelector} from 'react-redux';
 
 import Stack from "@mui/material/Stack";
 import Box from "@mui/material/Box";
+import LinearProgress from '@mui/material/LinearProgress';
 import { styled } from '@mui/material/styles';
 
 import { MessageBubble } from "./MessageBubble";
@@ -17,12 +18,18 @@ const StyledBox = styled(Box)(({ theme }) => ({
 	paddingBottom: theme.spacing(2),
 }));
 
-export default function MessagesBox() {
+const TypingIndicator = styled(LinearProgress)(({ theme }) => ({
+	marginTop: theme.spacing(2),
+}));
+
+export default function MessagesBox(props: { isProcessingMessage: boolean}) {
 	const messages: MessagesState = getMessages();
+	const { isProcessingMessage } = props;
 
 	return (
 		<StyledBox>
 			{renderMessageBubbles(messages)}
+			{ isProcessingMessage && <TypingIndicator /> }
 		</StyledBox>
 	);
 }

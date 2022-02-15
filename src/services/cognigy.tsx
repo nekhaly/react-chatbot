@@ -8,17 +8,25 @@ export const client = new SocketClient(
 
 (async () => {
   await client.connect();
-
-  client.on("finalPing", () => {
-    console.log("bot is done processing a message");
-  });
 })();
 
-export const setListeners = (options: { messageReceivedHandler: Function }) => {
-  const { messageReceivedHandler } = options
+export const setListeners = (options: { messageReceivedHandler: Function, messageProcessingHandler: Function }) => {
+  const { messageReceivedHandler, messageProcessingHandler } = options
 
   client.on("output", output => {
-		messageReceivedHandler(output)
+		messageReceivedHandler(output);
 	});
 
+  client.on("typingStatus", (status) => {
+    status.status === "typingOn" ? messageProcessingHandler(true) : messageProcessingHandler(false); 
+  });
+
+}
+
+export const removeListeners = () => {
+  client.off("output", () => {
+	});
+
+  client.off("typingStatus", () => {
+  });
 }
